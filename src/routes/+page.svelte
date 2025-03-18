@@ -2,18 +2,18 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
-	const links = ['Intro', 'Tools', 'Projects', 'Contact'];
+	const links = ['Intro', 'Toolkit', 'Projects', 'Contact'];
 
 	let ctaBtnVisible = $state(true);
 	let mobileNavOpen = $state(false);
 
-	let introEle: HTMLElement;
-	let toolEle: HTMLElement;
-	let projectsEle: HTMLElement;
-	let contactEle: HTMLElement;
+	let introEle = $state<HTMLElement>();
+	let toolEle = $state<HTMLElement>();
+	let projectsEle = $state<HTMLElement>();
+	let contactEle = $state<HTMLElement>();
 
 	const onClickCta = () => {
-		contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		contactEle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	};
 
 	const onClickMenu = () => {
@@ -27,21 +27,18 @@
 	};
 
 	const navLinkClick = (link: String) => {
-		console.log(link);
-
 		switch (link.toLowerCase().trim()) {
 			case 'intro':
-				introEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				introEle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				break;
-			case 'tools':
-				toolEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			case 'toolkit':
+				toolEle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				break;
 			case 'projects':
-				projectsEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				projectsEle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				break;
 			case 'contact':
-				console.log('scroll to contact');
-				contactEle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				contactEle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				break;
 		}
 		if (mobileNavOpen) {
@@ -59,7 +56,7 @@
 				}
 			});
 		});
-		observer.observe(contactEle);
+		if (contactEle) observer.observe(contactEle);
 	});
 
 	if (browser) {
@@ -82,14 +79,19 @@
 </script>
 
 <div class="hide--underline hide--slide-in show hide show--underline show--slide-in hidden"></div>
-<header class="header header--show header--top w-full bg-transparent text-slate-200">
-	<div class="mx-auto flex h-32 max-w-5xl items-center justify-center text-primary-content">
+<header class="header header--show header--top w-full bg-transparent text-slate-200 shadow">
+	<div class="text-primary-content mx-auto flex h-32 max-w-5xl items-center justify-center">
 		<nav class="flex w-full items-center justify-between p-6">
-			<h1 class="inline-block text-3xl font-bold text-primary">Yuji️🗾</h1>
+			<h1 class="text-primary inline-block text-3xl font-bold">Yuji️🗾</h1>
 			<ul
 				class={[
-					mobileNavOpen ? '!translate-x-0 !opacity-100 !blur-0' : '',
-					'fixed left-0 top-0 z-30 flex h-screen w-screen translate-x-full flex-col items-start justify-start gap-8 bg-secondary p-8 opacity-0 blur-md transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 lg:text-slate-300 lg:opacity-100 lg:blur-0'
+					mobileNavOpen ? '!translate-x-0 !opacity-100 !blur-none' : '',
+					`bg-secondary fixed top-0 left-0 z-30 
+					 flex h-screen w-screen translate-x-full flex-col 
+					 items-start justify-start gap-8 p-8 opacity-0 blur-md 
+					 transition-all duration-300 lg:static lg:flex lg:h-auto lg:w-auto 
+					 lg:translate-x-0 lg:flex-row lg:bg-transparent lg:p-0 
+					 lg:text-slate-300 lg:opacity-100 lg:blur-none`
 				]}
 			>
 				<button
@@ -105,17 +107,17 @@
 				{#each links as link}
 					<li class="relative">
 						<button
-							class="font-semibold before:absolute before:-bottom-1 before:left-0 before:block before:h-1 before:w-0 before:bg-slate-300 before:transition-all before:duration-300 before:content-[''] hover:text-secondary before:hover:w-full before:hover:bg-secondary"
+							class="hover:text-secondary before:hover:bg-secondary font-semibold before:absolute before:-bottom-1 before:left-0 before:block before:h-1 before:w-0 before:bg-slate-300 before:transition-all before:duration-300 before:content-[''] before:hover:w-full"
 							onclick={() => navLinkClick(link)}>{link}</button
 						>
 					</li>
 				{/each}
 			</ul>
-			<button class="lg:hidden" aria-label="Menu" onclick={onClickMenu}>
+			<button class="cursor-pointer lg:hidden" aria-label="Menu" onclick={onClickMenu}>
 				<div class="h-6 w-6">
-					<div class="mb-1 h-1 rounded bg-slate-300"></div>
-					<div class="mb-1 h-1 rounded bg-slate-300"></div>
-					<div class="mb-1 h-1 rounded bg-slate-300"></div>
+					<div class="mb-1 h-1 rounded bg-slate-100"></div>
+					<div class="mb-1 h-1 rounded bg-slate-100"></div>
+					<div class="mb-1 h-1 rounded bg-slate-100"></div>
 				</div>
 			</button>
 		</nav>
@@ -126,62 +128,64 @@
 	<button
 		onclick={onClickCta}
 		class={[
-			'btn btn-secondary fixed bottom-8 right-4 z-20 flex text-secondary-content drop-shadow-xl transition-all hover:scale-125',
+			'btn btn-secondary text-secondary-content fixed right-4 bottom-8 z-20 flex drop-shadow-xl transition-all hover:scale-125',
 			mobileNavOpen ? 'hidden' : 'block',
 			ctaBtnVisible ? '' : 'hidden'
 		]}
 	>
-		<span> お問い合わせ </span><img class="w-6" src="./images/contact-mail.svg" alt="" />
+		<img class="w-6" src="./images/contact-mail.svg" alt="" />
 	</button>
 
+	<!-- intro -->
 	<section
 		bind:this={introEle}
 		id="intro"
-		class="flex min-h-screen w-full flex-col items-center justify-center"
+		class="flex min-h-screen flex-col items-center justify-center"
 	>
-		<div class="hero min-h-screen">
+		<div class="hero grow">
 			<div class="hero-content w-screen text-center">
 				<div class="flex w-full flex-col items-center justify-center gap-12">
-					<h1 class="mt-8 text-5xl font-bold text-secondary">Hello there 👋</h1>
-					<div class="mockup-code w-[80%] bg-slate-700 px-8 pb-12">
+					<h1 class="text-secondary mt-8 text-5xl font-bold">Hello there 👋</h1>
+					<div class="mockup-code w-[90%] bg-slate-700 px-4 pb-12">
 						<p class="text-slate-300">
-							アメリカで20年以上過ごし、英語力を活かしてフリーランス
-							の翻訳・通訳業務を行っています。 TOEIC990点を取得しており、
-							ビジネスや国際的な環境での円滑なコミュニケーションに強みがあります。
-							加えて、Python、Excel、ウェブ開発（JavaScript、HTML、CSS、React、Svelte）
-							を駆使し、業務の効率化やシステム開発をサポート。ExcelではVBAを用いて作業の自動化やデータ分析を行い、
-							ReactやSvelteを活用してインタラクティブなウェブサイトを構築しています。
-							自己開発でAndroidアプリも制作しており、
-							幅広い技術を組み合わせて、クライアントの多様なニーズに応えています。今後もこれらのスキルを活かし、
-							更なる成長を目指し貢献していきたいと考えています。
+							Welcome to my portfolio! I'm a self-taught programmer with a passion for creating
+							intuitive and efficient digital experiences. Over the years, I've honed my skills in
+							both front-end and back-end development, as well as Android app creation. Through
+							hands-on projects and continuous learning, I've gained expertise in designing seamless
+							user interfaces, building robust server-side systems, and developing powerful mobile
+							applications. Here, you'll find a showcase of my work—each project representing my
+							dedication to problem-solving and innovation. Whether it’s crafting responsive
+							websites, optimizing back-end architectures, or building dynamic Android apps, I
+							approach every challenge with enthusiasm and precision. Feel free to explore my
+							projects, and let me know if you’d like to collaborate or learn more!
 						</p>
 					</div>
-					<button onclick={onClickCta} class="btn btn-primary">Get Started</button>
+					<button onclick={onClickCta} class="btn btn-primary">Contact Me</button>
 				</div>
 			</div>
 		</div>
-		<div
-			class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col items-center justify-center p-9"
-		>
+		<div class="mx-auto flex max-w-5xl grow flex-col items-center justify-center p-9">
 			{@render next_section_arrow(toolEle)}
 		</div>
 	</section>
 
 	<!-- tool -->
 	<section bind:this={toolEle} class="tools flex min-h-screen flex-col items-center justify-center">
-		<div class="hide hide--slide-in mx-auto flex max-w-5xl grow flex-col gap-8 p-9">
-			<div class="card self-end bg-base-300">
+		<div class="mx-auto flex max-w-5xl grow flex-col gap-8 p-9">
+			<div class="card bg-base-300 self-end">
 				<div class="card-body">
 					<h2
-						class="hide hide--underline inline-block w-fit self-end text-3xl font-semibold text-secondary before:bg-secondary md:text-4xl"
+						class="hide hide--underline text-secondary before:bg-secondary inline-block w-fit self-end text-3xl font-semibold md:text-4xl"
 					>
-						Tool 🔧<span class="block text-3xl">ツール制作</span>
+						<span class="block text-3xl">Some tools I have experience in🔧</span>
 					</h2>
-					<ul class="mt-4 flex flex-col items-end justify-end text-xs text-slate-400">
-						<li>Pythonを用いたカスタムツール開発</li>
-						<li>Excel業務の自動化・効率化</li>
-						<li>データ分析・処理の最適化</li>
-						<li>WebスクレイピングやAPI連携による情報収集</li>
+					<ul
+						class="mt-4 flex flex-col items-end justify-end text-end text-xs text-slate-400 *:mt-2"
+					>
+						<li class="">Languages</li>
+						<li>Technologies/Frameworks</li>
+						<li>Databases</li>
+						<li>Libraries</li>
 					</ul>
 				</div>
 			</div>
@@ -201,9 +205,10 @@
 		</div>
 	</section>
 
+	<!-- projects -->
 	<section bind:this={projectsEle} id="projects" class="min-h-screen w-full">
 		<div class="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-9">
-			<h2 class="hide hide--underline text-4xl font-semibold text-secondary before:bg-primary">
+			<h2 class="hide hide--underline text-secondary before:bg-primary text-4xl font-semibold">
 				Projects
 			</h2>
 			{@render project(
@@ -239,7 +244,7 @@
 	<section
 		bind:this={contactEle}
 		id="contact"
-		class="flex min-h-screen w-full flex-col items-center justify-center bg-secondary"
+		class="bg-secondary flex min-h-screen w-full flex-col items-center justify-center"
 	>
 		{@render contact()}
 	</section>
@@ -264,7 +269,8 @@
 				></g><g id="SVGRepo_iconCarrier">
 					<path
 						d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z"
-						fill="#ffffff"
+						fill="#fff"
+						class="fill-secondary"
 					></path>
 				</g></svg
 			>
@@ -289,7 +295,7 @@
 					</div>
 				</div>
 				<div class="flex flex-col gap-4">
-					<h3 class="mx-444 card-title text-3xl text-primary">{title}</h3>
+					<h3 class="card-title text-primary mx-4 text-3xl">{title}</h3>
 					<p style="">
 						{description}
 					</p>
@@ -308,11 +314,11 @@
 					</div>
 				</div>
 			</div>
-			<table class="table table-zebra bg-base-100">
+			<table class="table-zebra table">
 				<tbody>
 					<tr>
 						<th>Platform</th>
-						<td>Android<img class=" inline-block h-8 w-8" src="/images/android.svg" alt="" /></td>
+						<td>Android<img class="inline-block h-8 w-8" src="/images/android.svg" alt="" /></td>
 					</tr>
 					<tr>
 						<th>Language</th>
@@ -377,14 +383,8 @@
 {/snippet}
 
 {#snippet contact()}
-	<div
-		class="hide hide--slide-in mx-auto flex w-full max-w-5xl grow flex-col items-center justify-center gap-9 p-9"
-	>
-		<h2
-			class="hide hide--underline text-4xl font-semibold text-secondary-content before:bg-slate-800"
-		>
-			Contact ☎
-		</h2>
+	<div class="mx-auto flex w-full max-w-5xl grow flex-col items-center justify-center gap-9 p-9">
+		<h2 class="text-secondary-content text-4xl font-semibold before:bg-slate-800">Contact ☎</h2>
 		<form
 			class="flex w-full grow flex-col items-center justify-center gap-4 lg:w-1/2"
 			action="https://api.web3forms.com/submit"
@@ -414,15 +414,15 @@
 				aria-multiline="true"
 			></textarea>
 			<button type="submit" class="btn btn-primary self-end justify-self-end">
-				<span class="text-slate-900"> お問い合わせ </span>
-				<img src="/images/arrow.svg" width="28px" alt="" />
+				<span>Send</span>
+				<img class="fill-accent" src="/images/arrow.svg" width="28px" alt="" />
 			</button>
 		</form>
 	</div>
 {/snippet}
 
 {#snippet footer()}
-	<footer class="footer bg-neutral p-10 text-neutral-content">
+	<footer class="footer bg-neutral text-neutral-content p-10">
 		<aside>
 			<p>
 				Yuji
