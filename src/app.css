@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
-@plugin 'daisyui' {}
+@plugin 'daisyui' {
+    themes: dark --default, dark --prefers-dark;
+}
 
 
 @font-face {
@@ -15,6 +17,13 @@
     font-display: swap;
 }
 
+.code {
+    font-family: 'code', monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 :root {
-    font-family: 'Cubano', 'rounded', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cubano', 'rounded', 'code', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
