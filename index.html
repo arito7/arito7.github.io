@@ -1,44 +1,150 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>🐰Yuji Takamatsu</title>
+  </head>
 
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-	<title>🐰Yuji Takamatsu</title>
-</head>
+  <body class="bg-base-200 min-w-dvw min-h-dvh flex flex-col items-center p-10">
+    <main class="max-w-3xl flex flex-col items-center gap-8">
+      <header class="flex flex-col md:flex-row gap-8 pt-8 items-center">
+        <div class="avatar">
+          <div class="w-48 rounded">
+            <img src="/images/prof.png" />
+          </div>
+        </div>
 
-<body class="bg-base-200 min-w-dvw min-h-dvh flex flex-col items-center">
-	<main class="max-w-3xl flex flex-col items-center gap-4">
+        <div class="flex flex-col justify-end items-start pb-2 gap-4">
+          <h1 class="text-4xl font-bold">Yuji Takamatsu</h1>
+          <h2 class="font-bold">Software Technician</h2>
+          <a class="underline" href="mailto:yuji703tak@gmail.com"
+            >yuji703tak@gmail.com</a
+          >
+          <nav class="flex flex-row gap-4">
+            <a class="" target="_blank" href="https://www.github.com/arito7"
+              ><img
+                src="/images/github-sign.png"
+                aria-label="github"
+                class="w-6"
+            /></a>
+            <a
+              class=""
+              target="_blank"
+              href="https://www.linkedin.com/in/yuji-takamatsu-3761a160"
+              ><img
+                src="/images/linkedin.png"
+                aria-label="linkedin"
+                class="w-6"
+            /></a>
+          </nav>
+        </div>
+      </header>
 
-		<header class="flex flex-col md:flex-row gap-8 pt-16 items-center">
-			<div class="avatar">
-				<div class="w-48 rounded">
-					<img src="/images/1775350492589.png" />
-				</div>
-			</div>
+      <section class="flex flex-col gap-8 items-center">
+        Hello, I'm Yuji. I'm an aspiring software enginner currently pursuing my
+        degree in Computer Science. I live in Pittsburgh, and I have a pet
+        rabbit; Rex.
+        <img
+          src="/images/rex.png"
+          alt="Rex my rabbit"
+          class="rounded w-128 h-128 object-cover shadow-lg md:h-150"
+        />
+        <caption>
+          <p>
+            This is Rex. He happens to be a
+            <a
+              target="_blank"
+              href="https://en.wikipedia.org/wiki/Rex_rabbit"
+              class="underline font-bold text-primary"
+              >Rex Rabbit</a
+            >
+          </p>
+        </caption>
+      </section>
 
-			<div class="flex flex-col justify-end items-start pb-2 gap-4">
-				<h1 class="text-4xl">Yuji Takamatsu</h1>
-				<h2>Software Technician</h2>
-				<a href="mailto:yuji703tak@gmail.com">yuji703tak@gmail.com</a>
-				<nav class="flex flex-row gap-4">
-					<a class="" target="_blank" href="https://www.github.com/arito7"><img src="/images/github-sign.png"
-							aria-label="github" class="w-6" /></a>
-					<a class="" target="_blank" href="https://www.linkedin.com/in/yuji-takamatsu-3761a160"><img
-							src="/images/linkedin.png" aria-label="linkedin" class="w-6" /></a>
-				</nav>
-			</div>
+      <section>
+        <h2 class="text-3xl mb-4">Projects</h2>
 
-		</header>
+        <div class="flex flex-col gap-8">
+          <div>
+            <h3 class="text-lg font-bold">Wi-Fi Controlled RC Car</h3>
+            <h3 class="text-md underline mb-2">Embedded Project</h3>
+            <ul class="flex flex-col gap-2">
+              <li>
+                Currently developing a C codebase for an ESP32 to manage
+                real-time vehicle control.
+              </li>
+              <li>
+                Implemented PWM logic to interface with H-Bridge motor drivers
+                for precise speed and steering adjustments.
+              </li>
+              <li>
+                Implementing Bluetooth connectivity to enable real-time remote
+                steering and throttle control from a mobile interface.
+              </li>
+            </ul>
+          </div>
 
+          <div>
+            <h3 class="text-lg font-bold">File Compression Tool</h3>
+            <h3 class="text-md underline mb-4">C++ Project</h3>
+            <ul class="flex flex-col gap-2">
+              <li>
+                A command-line file compression tool written in C++ using
+                Huffman coding algorithms.
+              </li>
+              <li>
+                Managed manual memory allocation to optimize the frequency tree
+                generation and binary file I/O operations.
+              </li>
+            </ul>
+          </div>
 
-		<section>
-			<h2>Projects</h2>
-		</section>
-	</main>
-</body>
+          <div>
+            <h3 class="text-lg font-bold">SDSGC Database and Logger</h3>
+            <h3 class="text-md underline mb-4">Android Application</h3>
+            <ul class="flex flex-col gap-2">
+              <li>
+                Developed and launched a utility app for the Google Play Store,
+                achieving 50,000+ downloads and sustaining 2,000+ Monthly Active
+                Users.
+              </li>
+              <li>
+                Implemented complex resource calculation logic to help users
+                optimize in-game inventory and character progression.
+              </li>
+              <li>
+                Built a real-time, crowdsourced 5-star rating system using
+                Firebase Cloud Firestore for live data aggregation.
+              </li>
+            </ul>
+          </div>
 
+          <div>
+            <h3 class="text-lg font-bold">OSRS Prices</h3>
+            <h3 class="text-md underline mb-4">Android Application</h3>
+            <ul class="flex flex-col gap-2">
+              <li>
+                Built a real-time price tracker fetching live data from Jagex
+                APIs, serving over 10,000+ users.
+              </li>
+              <li>
+                Designed local storage solutions to allow users to "favorite"
+                items and track specific price fluctuations over a period of
+                time.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
