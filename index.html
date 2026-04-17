@@ -68,7 +68,7 @@
         
       </div>
       <section>
-        <h2 class="text-3xl mb-4 font-bold underline">Projects</h2>
+        <h2 class="text-3xl mb-4 font-bold underline ">Projects</h2>
 
         <!-- PROJECTS -->
         <div class="flex flex-col gap-8">
@@ -96,14 +96,23 @@
           </div>
           <!-- END RC CAR PROJECT -->
 
+          <div class="divider"></div>
+
           <div>
-            <h3 class="text-lg font-semibold text-indigo-700">File Compression Tool</h3>
+            <a class="flex flex-row items-center justify-between my-2" href="https://github.com/arito7/huffman" target="_blank">
+              <h3 class="text-lg font-semibold text-indigo-700">Text Compression Tool</h3>
+                <img src="/images/github-sign.png"
+                    aria-label="github"
+                    class="inline ml-2 w-6"/>
+            </a>
             <h3 class="text-sm underline mb-4 font-medium">C++ Project</h3>
             <ul class="flex flex-col gap-2">
-              <li> A command-line file compression tool written in C++ using Huffman coding algorithms.</li>
-              <li> Managed manual memory allocation to optimize the frequency tree generation and binary file I/O operations.</li>
+              <li>A command-line lossless file compression tool written in C++ using the Huffman algorithm.</li>
+              <li>Managed manual memory allocation to optimize the frequency tree generation and binary file I/O operations.</li>
             </ul>
           </div>
+
+          <div class="divider"></div>
 
           <div>
             <h3 class="text-lg font-semibold text-indigo-700">SDSGC Database and Logger</h3>
@@ -114,6 +123,8 @@
               <li> Built a real-time, crowdsourced 5-star rating system using Firebase Cloud Firestore for live data aggregation. </li>
             </ul>
           </div>
+
+          <div class="divider"></div>
 
           <div>
             <h3 class="text-lg font-semibold text-indigo-700">OSRS Prices</h3>
