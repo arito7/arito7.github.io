@@ -50,7 +50,7 @@
         <img
           src="/images/rex.png"
           alt="Rex my rabbit"
-          class="rounded w-64 h-64 object-cover shadow-lg md:h-120"
+          class="rounded border-2 border-dotted border-indigo-700 w-64 h-64 object-cover shadow-lg md:h-120"
         />
         <caption>
           <p> This is <strong>Rex</strong>. He happens to be a
@@ -64,25 +64,37 @@
         </caption>
       </section>
 
+      <div class="my-24">
+        
+      </div>
       <section>
-        <h2 class="text-3xl mb-4 font-bold">Projects</h2>
+        <h2 class="text-3xl mb-4 font-bold underline">Projects</h2>
 
+        <!-- PROJECTS -->
         <div class="flex flex-col gap-8">
-          <div>
-            <a class="flex flex-row items-center justify-between my-2" href="https://github.com/arito7/esp32-rc" target="_blank">
-              <h3 class="text-lg font-semibold text-indigo-700">Wi-Fi Controlled RC Car</h3>
-                <img src="/images/github-sign.png"
-                    aria-label="github"
-                    class="inline ml-2 w-6"/>
-            </a>
-            <h3 class="text-sm underline mb-2 font-medium">Embedded Project</h3>
-            <ul class="flex flex-col gap-2">
-              <li>An RC car using an ESP32 to manage real-time vehicle control.</li>
-              <li>The RC car is controlled over WIFI</li>
-              <li>Uses PWM logic to interface with H-Bridge motor drivers for precise speed and steering adjustments.</li>
-              <li>ESP32 acts as an access point and a server that serves the GUI for controls.</li>
-            </ul>
+
+          <!-- RC CAR PROJECT -->
+          <div class="flex flex-col items-center sm:flex-row gap-4">
+            <div class="flex flex-col gap-2">
+              <a class="flex flex-row items-center justify-between my-2" href="https://github.com/arito7/esp32-rc" target="_blank">
+                <h3 class="text-lg font-semibold text-indigo-700">Wi-Fi Controlled RC Car</h3>
+                  <img src="/images/github-sign.png"
+                      aria-label="github"
+                      class="inline ml-2 w-6"/>
+              </a>
+              <h3 class="text-sm underline mb-2 font-medium">Embedded Project</h3>
+              <ul class="flex flex-col gap-2">
+                <li>An RC car using an ESP32 to manage real-time vehicle control.</li>
+                <li>The RC car is controlled over WIFI</li>
+                <li>Uses PWM logic to interface with H-Bridge motor drivers for precise speed and steering adjustments.</li>
+                <li>ESP32 acts as an access point and a server that serves the GUI for controls.</li>
+              </ul>
+            </div>
+            <img src="/images/rc.gif"
+              aria-label="github"
+              class="rounded border-2 border-dotted border-indigo-700 shadow-sm inline ml-2 w-48"/>
           </div>
+          <!-- END RC CAR PROJECT -->
 
           <div>
             <h3 class="text-lg font-semibold text-indigo-700">File Compression Tool</h3>
